@@ -8,8 +8,8 @@ from flask import Flask, jsonify, render_template,request
 application = Flask(__name__)
 app = application
 
-# import ridge regressor and standard scaler pickle
-ridge_model = pickle.load(open("./models/lassocv.pkl", "rb"))
+# import lassocv regressor and standard scaler pickle
+lassocv_model = pickle.load(open("./models/lassocv.pkl", "rb"))
 standard_scaler = pickle.load(open("./models/scaler.pkl", "rb"))
 
 
@@ -34,7 +34,7 @@ def predict_datapoint():
         Region = float(request.form.get("Region"))
 
         new_datapoint = standard_scaler.transform([[Temperature,RH,Ws,Rain,FFMC,DMC,DC,ISI,Classes,Region]])
-        result = ridge_model.predict(new_datapoint)
+        result = lassocv_model.predict(new_datapoint)
 
         return render_template("home.html",results=result[0])
 

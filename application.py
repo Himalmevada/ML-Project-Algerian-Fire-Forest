@@ -9,7 +9,7 @@ application = Flask(__name__)
 app = application
 
 # import ridge regressor and standard scaler pickle
-ridge_model = pickle.load(open("./models/ridge.pkl", "rb"))
+ridge_model = pickle.load(open("./models/lassocv.pkl", "rb"))
 standard_scaler = pickle.load(open("./models/scaler.pkl", "rb"))
 
 
@@ -28,6 +28,7 @@ def predict_datapoint():
         Rain = float(request.form.get("Rain"))
         FFMC = float(request.form.get("FFMC"))
         DMC = float(request.form.get("DMC"))
+        DC = float(request.form.get("DC"))
         ISI = float(request.form.get("ISI"))
         Classes = float(request.form.get("Classes"))
         Region = float(request.form.get("Region"))
